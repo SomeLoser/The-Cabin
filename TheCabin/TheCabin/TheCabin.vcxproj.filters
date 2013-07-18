@@ -18,18 +18,12 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="character.cpp">
+    <ClCompile Include="Buttons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai.h">
+    <ClInclude Include="Buttons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

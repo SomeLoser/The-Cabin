@@ -21,6 +21,9 @@
     <ClCompile Include="Buttons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buttons.h">

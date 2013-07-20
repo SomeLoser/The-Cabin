@@ -14,17 +14,22 @@ using namespace std;
 class Character
 {
 public:
-string hair[3];
-string eyes[3];
-string face[3];
-string mouth[3];
-string name;
+	Character();
+	~Character();
+	string hair[3];
+	string eyes[3];
+	string face[3];
+	string mouth[3];
+	string name;
+	float BOUND;
+	GLuint faceOne;
+	GLuint faceTwo;
 
-void draw();
-void loadTexture();
-void update(int value);
-void saveToFile();
-void loadFromFile();
+	void draw();
+	void loadTexture();
+	void update(int value);
+	void saveToFile();
+	void loadFromFile();
 
 
 };

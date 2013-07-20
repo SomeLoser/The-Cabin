@@ -6,6 +6,10 @@
 #include "AL\al.h"
 #include "AL\alut.h"
 
+#include "Buttons.h"
+#include "character.h"
+
+
 using namespace std;
 
 
@@ -21,6 +25,14 @@ void keyboard(unsigned char key, int x, int y);
 void mouseButton(int state, int button, int x, int y);
 void mousePassive(int x, int y);
 void update(int value);
+
+int FPS = 27;
+int BOUND = 100;
+int windowWidth = 512;
+int windowHeight = 512;
+
+
+
 
 //variables and constants
 
@@ -191,7 +203,7 @@ void display()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(-BOUND,BOUND,-BOUND,BOUND,-BOUND,BOUND);
-	glMatrixMode(GL_MODELWIEW);
+	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
 	glutSwapBuffers();
@@ -200,13 +212,15 @@ void display()
 void initGame()
 {
 	//game initializations
+	Buttons b1 = Buttons();
+
 }
 
 void keyboard(unsigned char key, int x, int y)
 {
 	switch(key)
 	{
-	case ESC: glutLeaveMainLoop(); break;
+	case 27: glutLeaveMainLoop(); break;
 	case 'h': cerr << "help menu here" << endl;
 	
 	default: break;
@@ -227,7 +241,7 @@ void mouseButton(int state, int button, int x, int y)
 
 }
 
-void mousePassiveint x, int y)
+void mousePassive(int x, int y)
 {
 	x = -1 * ((windowWidth / 2) - x - 1);
 	y = ((windowHeight / 2) - y - 1);
@@ -235,14 +249,14 @@ void mousePassiveint x, int y)
 	x = (x / (windowWidth / 2.0)) *100;
 	y = (y / (windowHeight / 2.0)) *100;
 
-	if()
-	{
+	//if()
+	//{
 
-	}
-	else
-	{
+	//}
+	//else
+	//{
 
-	}
+	//}
 
 	glutPostRedisplay();
 }

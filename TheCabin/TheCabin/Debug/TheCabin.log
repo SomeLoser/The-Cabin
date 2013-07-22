@@ -1,23 +1,35 @@
-﻿Build started 7/20/2013 2:45:39 PM.
-     1>Project "C:\Users\Max\Documents\GitHub\The-Cabin\TheCabin\TheCabin\TheCabin.vcxproj" on node 2 (Build target(s)).
+﻿Build started 7/22/2013 11:16:26 AM.
+     1>Project "C:\Users\XSomeLoser\Documents\GitHub\The-Cabin\TheCabin\TheCabin\TheCabin.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\Programs\Visual Studio\VC\bin\CL.exe /c /I"C:\Users\Max\Documents\GitHub\The-Cabin\TheCabin\TheCabin\\GL" /I"C:\Users\Max\Documents\GitHub\The-Cabin\TheCabin\TheCabin\\IL" /I"C:\Users\Max\Documents\GitHub\The-Cabin\TheCabin\TheCabin\\AL" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp character.cpp
-         character.cpp
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\character.cpp(33): warning C4800: 'ILboolean' : forcing value to bool 'true' or 'false' (performance warning)
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\character.cpp(37): warning C4800: 'ILboolean' : forcing value to bool 'true' or 'false' (performance warning)
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\character.cpp(64): fatal error C1075: end of file found before the left brace '{' at 'c:\users\max\documents\github\the-cabin\thecabin\thecabin\character.cpp(12)' was matched
+         E:\Programs\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\XSomeLoser\Documents\GitHub\The-Cabin\TheCabin\TheCabin\\GL" /I"C:\Users\XSomeLoser\Documents\GitHub\The-Cabin\TheCabin\TheCabin\\IL" /I"C:\Users\XSomeLoser\Documents\GitHub\The-Cabin\TheCabin\TheCabin\\AL" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp Menu.cpp
+         Menu.cpp
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(32): error C2065: 'texID' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(44): warning C4800: 'ILboolean' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(50): warning C4800: 'ILboolean' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(56): error C2065: 'cerr' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(56): error C2065: 'endl' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(61): error C2065: 'texID' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(87): error C2065: 'texID' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(91): error C2065: 'w' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(91): error C2065: 'h' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(92): error C2065: 'w' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(92): error C2065: 'h' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(93): error C2065: 'w' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(93): error C2065: 'h' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(94): error C2065: 'w' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.cpp(94): error C2065: 'h' : undeclared identifier
          Main.cpp
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\main.cpp(148): error C2065: 'texID' : undeclared identifier
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\main.cpp(160): warning C4800: 'ILboolean' : forcing value to bool 'true' or 'false' (performance warning)
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\main.cpp(166): warning C4800: 'ILboolean' : forcing value to bool 'true' or 'false' (performance warning)
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\main.cpp(177): error C2065: 'texID' : undeclared identifier
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\main.cpp(236): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\main.cpp(237): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\main.cpp(249): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\max\documents\github\the-cabin\thecabin\thecabin\main.cpp(250): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\main.cpp(151): warning C4244: 'argument' : conversion from 'double' to 'ALint', possible loss of data
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\main.cpp(184): error C2039: 'initMenu' : is not a member of 'Menu'
+                 c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\menu.h(7) : see declaration of 'Menu'
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\main.cpp(204): error C2065: 'texID' : undeclared identifier
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\main.cpp(231): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\main.cpp(232): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\main.cpp(244): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\xsomeloser\documents\github\the-cabin\thecabin\thecabin\main.cpp(245): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
          Generating Code...
-     1>Done Building Project "C:\Users\Max\Documents\GitHub\The-Cabin\TheCabin\TheCabin\TheCabin.vcxproj" (Build target(s)) -- FAILED.
+     1>Done Building Project "C:\Users\XSomeLoser\Documents\GitHub\The-Cabin\TheCabin\TheCabin\TheCabin.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:01.39
+Time Elapsed 00:00:01.73

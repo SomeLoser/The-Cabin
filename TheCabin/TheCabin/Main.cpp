@@ -8,6 +8,7 @@
 #include "Buttons.h"
 
 #include "Buttons.h"
+#include "Menu.h"
 //#include "character.h"
 
 using namespace std;
@@ -35,7 +36,9 @@ Buttons forwardButton;
 const int FPS = 27;
 const int BOUND = 100;
 
-GLuint texID[6]; //ID's for the textures
+Menu menu;
+
+//GLuint texID[6]; //ID's for the textures
 ALuint bgmusic; //ID for the audio
 
 //the ID for the buffer we need (audio)
@@ -93,42 +96,6 @@ int main(int argc, char** argv)
 
 void initGL()
 {
-	//these are the current versions of OpenGL
-
-	string versions[15] = 
-	{
-		"GL_VERSION_1_1",
-		"GL_VERSION_1_2",
-		"GL_VERSION_1_3",
-		"GL_VERSION_1_4",
-		"GL_VERSION_1_5",
-		"GL_VERSION_2_0",
-		"GL_VERSION_2_1",
-		"GL_VERSION_3_0",
-		"GL_VERSION_3_1",
-		"GL_VERSION_3_2",
-		"GL_VERSION_3_3",
-		"GL_VERSION_4_0",
-		"GL_VERSION_4_1",
-		"GL_VERSION_4_2",
-		"GL_VERSION_4_3"
-	};
-
-	//Determine which versions are safe to use
-
-	cerr << "OpenGL+GLEW Info: " << endl;
-
-	for(int i = 0; i < 15; ++i)
-	{
-		if (glewIsSupported(versions[i].c_str()))
-			cerr << versions[i] << " is supported" << endl;
-		else
-			cerr << "ERROR: " << versions[i] << " is not supported" << endl;
-	}
-
-	cerr << endl << "OpenGL " << glGetString (GL_VERSION)
-		 << " is the current OpenGL version" << endl << endl;
-
 	glClearColor(0,0,0.25,0);
 
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,
@@ -147,63 +114,7 @@ void initGL()
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
-	//handle to file for loading images
-
-	ILuint file[6];
-
-	for(int i = 0; i < 6; ++i)
-	{
 	
-	glGenTextures(1, &texID[i]);
-
-	//just like OpenGL, you need to specify how many images you want to generate
-
-	ilGenImages(1, &file[i]);
-
-	//tie the current image DevIL is working with handle
-
-	ilBindImage(file[i]);
-
-	//safty check
-
-	bool success = ilLoadImage(("Content\\tex" + std::to_string(i+1) + ".png").c_str());;
-
-	if(success)
-	{
-		//convert the picel data into a usable format
-
-		success = ilConvertImage(IL_RGBA,IL_UNSIGNED_BYTE);
-
-		if(!success)
-		{
-			//if an image failed to load, exit out
-
-			cerr << "Failed to load image via DevIL" << endl;
-			glutLeaveMainLoop();
-			return;
-		}
-
-		glBindTexture(GL_TEXTURE_2D, texID[i]);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
-		glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
-
-		//pull th necessary information from the image DevIL loaded and bind it to an OpenGL texture
-
-		glTexImage2D(GL_TEXTURE_2D,0,ilGetInteger(IL_IMAGE_BPP), 
-					 ilGetInteger(IL_IMAGE_WIDTH),
-					 ilGetInteger(IL_IMAGE_HEIGHT),
-					 0, ilGetInteger(IL_IMAGE_FORMAT),
-					 GL_UNSIGNED_BYTE, ilGetData());
-
-		//since we don't need the original image anymore, remove it from memory
-
-		ilDeleteImages(1, &file[i]);
-	}
-
-	}
 }
 
 void initAL()
@@ -252,28 +163,6 @@ void initAL()
 	}
 }
 
-void drawCharacerMenu()
-{
-	int x = 0;
-	int y = 0;
-
-	float w = BOUND;
-	float h = BOUND;
-
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D,texID[0]);
-	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
-
-	glBegin(GL_QUADS);
-		glTexCoord2f(0,0); glVertex2f(-w + x, h + y);
-		glTexCoord2f(0,1); glVertex2f(-w + x, -h + y);
-		glTexCoord2f(1,1); glVertex2f(w + x, -h + y);
-		glTexCoord2f(1,0); glVertex2f(w + x, h + y);
-	glEnd();
-
-	glDisable(GL_TEXTURE_2D);
-}
-
 void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -291,6 +180,8 @@ void display()
 void initGame()
 {
 	//game initializations
+	menu = Menu();
+	menu.initMenu();
 }
 
 void keyboard(unsigned char key, int x, int y)

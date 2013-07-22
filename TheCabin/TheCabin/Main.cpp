@@ -5,13 +5,12 @@
 #include "IL\il.h"
 #include "AL\al.h"
 #include "AL\alut.h"
+#include "Buttons.h"
 
 #include "Buttons.h"
-#include "character.h"
-
+//#include "character.h"
 
 using namespace std;
-
 
 //functions prototypes
 void initGL();
@@ -26,15 +25,25 @@ void mouseButton(int state, int button, int x, int y);
 void mousePassive(int x, int y);
 void update(int value);
 
-int FPS = 27;
-int BOUND = 100;
-int windowWidth = 512;
-int windowHeight = 512;
-
-
-
+void drawCharacerMenu();
 
 //variables and constants
+
+Buttons backButton;
+Buttons forwardButton;
+
+const int FPS = 27;
+const int BOUND = 100;
+
+GLuint texID[6]; //ID's for the textures
+ALuint bgmusic; //ID for the audio
+
+//the ID for the buffer we need (audio)
+
+ALuint bufferID[3];
+
+int windowWidth = 800;
+int windowHeight = 800;
 
 int main(int argc, char** argv)
 {
@@ -105,7 +114,7 @@ void initGL()
 		"GL_VERSION_4_3"
 	};
 
-	//Determine which versions are sage to use
+	//Determine which versions are safe to use
 
 	cerr << "OpenGL+GLEW Info: " << endl;
 
@@ -197,6 +206,74 @@ void initGL()
 	}
 }
 
+void initAL()
+{
+    //for the current sound, create a position
+    ALfloat listenerPos[3] = {0,0,0};
+    
+    //and the velocity of the sound (for doplar effects)
+    ALfloat listenerVel[3] = {0,0,0};
+
+    //first 3 arguments: the "At" vector 
+    //(forward direction of listener)
+    //second 3 arguments: the "Up" vector 
+    //(perpendicular vector to "At")
+    ALfloat listenerDirection[6] = 
+    { 0.0, 0.0, 0.0,  0.0, 1.0, 0.0 };
+
+	//Set the source and listener to the same location
+    //set the values here for AL_POSITION, 
+    //AL_VELOCITY, and AL_ORIENTATION
+    alListenerfv(AL_POSITION,listenerPos);
+    alListenerfv(AL_VELOCITY,listenerVel);
+    alListenerfv(AL_ORIENTATION,listenerDirection);
+
+	for(int i = 0; i < 3; ++i)
+	{
+    //load the wav file into memory
+    bufferID[i] = alutCreateBufferFromFile(("Content\\sound" + std::to_string(i + 1) + ".wav").c_str());
+    
+    // Create sound buffer and source
+    alGenSources(1, &bgmusic);
+    alSourcei(bgmusic, AL_BUFFER, bufferID[i]);
+
+    alSourcei(bgmusic, AL_REFERENCE_DISTANCE, 1.0);
+    alSourcei(bgmusic, AL_SOURCE_RELATIVE, AL_TRUE);     
+    alSourcefv(bgmusic, AL_POSITION, listenerPos);
+
+    //to play sound
+	//alSourcePlay(bgmusic[3]);
+
+    //the major function calls to play sound are:
+    //alSourcePlay(bgmusic);    //plays a sound
+    //alSourcePause(bgmusic);   //pauses the sound
+    //alSourceStop(bgmusic);    //stops playback of sound
+    //alSourceRewind(bgmusic);  //sets playback position to beginning
+	}
+}
+
+void drawCharacerMenu()
+{
+	int x = 0;
+	int y = 0;
+
+	float w = BOUND;
+	float h = BOUND;
+
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D,texID[0]);
+	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+
+	glBegin(GL_QUADS);
+		glTexCoord2f(0,0); glVertex2f(-w + x, h + y);
+		glTexCoord2f(0,1); glVertex2f(-w + x, -h + y);
+		glTexCoord2f(1,1); glVertex2f(w + x, -h + y);
+		glTexCoord2f(1,0); glVertex2f(w + x, h + y);
+	glEnd();
+
+	glDisable(GL_TEXTURE_2D);
+}
+
 void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -206,14 +283,14 @@ void display()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
+	drawCharacerMenu();
+
 	glutSwapBuffers();
 }
 
 void initGame()
 {
 	//game initializations
-	Buttons b1 = Buttons();
-
 }
 
 void keyboard(unsigned char key, int x, int y)
@@ -225,6 +302,33 @@ void keyboard(unsigned char key, int x, int y)
 	
 	default: break;
 	}
+	glutPostRedisplay();
+}
+
+void destroyGame()
+{
+	for(int i = 0; i < 6; ++i)
+	{
+	//unload the textures form memory 
+	glDeleteTextures(1,&texID[i]);
+	}
+
+	for(int j = 0; j < 3; ++j)
+	{
+	//remove the buffer from memory
+	alDeleteBuffers(1,&bufferID[j]);
+	//remove the sound from memory 
+	alDeleteSources(1,&bgmusic);
+	//allows ALUT to perform a clean exit
+	}
+	alutExit();
+}
+
+void update(int value)
+{
+
+	glutTimerFunc(FPS, update, 0);
+
 	glutPostRedisplay();
 }
 
@@ -260,3 +364,4 @@ void mousePassive(int x, int y)
 
 	glutPostRedisplay();
 }
+

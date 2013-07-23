@@ -8,7 +8,6 @@ class Menu
 public:
 	Menu();
 	
-	void drawMenu();
 	void initMenu();
 
 	int mSize;

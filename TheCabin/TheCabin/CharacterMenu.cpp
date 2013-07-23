@@ -15,7 +15,7 @@ void CharacterMenu::initCharacterMenu()
 
 void CharacterMenu::drawCharacterMenu()
 {
-		glEnable(GL_TEXTURE_2D);
+	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,texID[0]);
 	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
 

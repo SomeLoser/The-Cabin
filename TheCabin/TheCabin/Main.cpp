@@ -9,7 +9,7 @@
 
 #include "Buttons.h"
 #include "CharacterMenu.h"
-//#include "character.h"
+#include "character.h"
 
 using namespace std;
 
@@ -36,6 +36,8 @@ Buttons forwardButton;
 const int FPS = 27;
 const int BOUND = 100;
 const int ESC = 27;
+
+Character face1;
 
 CharacterMenu menu;
 
@@ -174,6 +176,7 @@ void display()
 	glLoadIdentity();
 
 	menu.drawCharacterMenu();
+	face1.draw();
 
 	glutSwapBuffers();
 }
@@ -183,6 +186,7 @@ void initGame()
 	//game initializations
 	menu = CharacterMenu();
 	menu.initMenu();
+	/*face1 = Character();*/
 }
 
 void keyboard(unsigned char key, int x, int y)
@@ -213,6 +217,7 @@ void keyboard(unsigned char key, int x, int y)
 //	alDeleteSources(1,&bgmusic);
 //	//allows ALUT to perform a clean exit
 //	}
+//	face1.destry();
 //	alutExit();
 //}
 

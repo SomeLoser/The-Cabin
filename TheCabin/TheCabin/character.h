@@ -16,14 +16,9 @@ class Character
 public:
 	Character();
 	~Character();
-	string hair[3];
-	string eyes[3];
-	string face[3];
-	string mouth[3];
 	string name;
 	float BOUND;
-	GLuint faceOne;
-	GLuint faceTwo;
+	GLuint faceID[5];
 
 	void draw();
 	void loadTexture();

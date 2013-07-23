@@ -35,6 +35,7 @@ Buttons forwardButton;
 
 const int FPS = 27;
 const int BOUND = 100;
+const int ESC = 27;
 
 Menu menu;
 
@@ -188,7 +189,7 @@ void keyboard(unsigned char key, int x, int y)
 {
 	switch(key)
 	{
-	case 27: glutLeaveMainLoop(); break;
+	case ESC: glutLeaveMainLoop(); break;
 	case 'h': cerr << "help menu here" << endl;
 	
 	default: break;

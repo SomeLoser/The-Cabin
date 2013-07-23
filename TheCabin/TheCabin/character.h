@@ -17,7 +17,7 @@ public:
 	Character();
 	~Character();
 	string name;
-	float BOUND;
+	int BOUND;
 	GLuint faceID[5];
 
 	void draw();

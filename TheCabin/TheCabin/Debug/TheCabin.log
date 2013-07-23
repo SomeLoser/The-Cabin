@@ -1,4 +1,4 @@
-﻿Build started 7/23/2013 9:48:45 AM.
+﻿Build started 7/23/2013 10:24:50 AM.
      1>Project "C:\Users\Owner\Documents\GitHub\The-Cabin\TheCabin\TheCabin\TheCabin.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Owner\Documents\GitHub\The-Cabin\TheCabin\TheCabin\\GL" /I"C:\Users\Owner\Documents\GitHub\The-Cabin\TheCabin\TheCabin\\IL" /I"C:\Users\Owner\Documents\GitHub\The-Cabin\TheCabin\TheCabin\\AL" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt character.cpp
@@ -16,4 +16,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.25
+Time Elapsed 00:00:01.24

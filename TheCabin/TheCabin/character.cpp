@@ -2,17 +2,31 @@
 #include "character.h"
 #endif
 
+//Character()
+//input: n/a
+//output: n/a
+//Character() is used to initialize all the
+//variables for the character class.
 Character::Character()
 {
-	name = "    ";
 	BOUND = 100;
 }
 
+//~Character()
+//input: n/a
+//output: n/a
+//~Character is the deconstructor for the
+//character class
 Character::~Character()
 {
 
 }
 
+//loadTexture()
+//input: n/a
+//output: n/a
+//loadtexture will load the textures for the different character
+//faces so that the player can make a face to put into the game
 void Character::loadTexture()
 {
 	glMatrixMode(GL_MODELVIEW);
@@ -72,13 +86,23 @@ void Character::loadTexture()
 	}
 }
 
-void Character::getName()
+//string getName(string name)
+//input: string that will set the name of the character
+//output: string that will display the name of the character
+//getName(string name) will be used to display the character's name
+string Character::getName(string name)
 {
 	cerr << "Enter you name: " << endl;
 	name = cin.get();
 	cerr << "Good luck, " << name << endl;
+	return name;
 }
 
+//draw()
+//input: n/a
+//output: n/a
+//draw() will draw the images for the character for the
+//player to create their own look.
 void Character::draw()
 {
 	glMatrixMode(GL_MODELVIEW);
@@ -105,6 +129,11 @@ void Character::draw()
 	glDisable(GL_TEXTURE_2D);
 }
 
+//destroy()
+//input: n/a
+//output: n/a
+//destroy() will destroy the different textures for
+//the faces of the characters
 void Character::destroy()
 {
 	for(int i = 0; i < 5; ++i)

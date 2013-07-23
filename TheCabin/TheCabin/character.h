@@ -16,7 +16,6 @@ class Character
 public:
 	Character();
 	~Character();
-	string name;
 	int BOUND;
 	GLuint faceID[5];
 
@@ -26,10 +25,7 @@ public:
 	void saveToFile();
 	void loadFromFile();
 	void destroy();
-	void getName();
-
-
-
+	string getName(string name);
 };
 
 #endif

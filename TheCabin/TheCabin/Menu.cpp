@@ -43,60 +43,42 @@ void Menu::initMenu()
 
 	bool success = ilLoadImage(("Content\\Menu\\tex" + std::to_string(i+1) + ".png").c_str());;
 
-	if(success)
-	{
-		//convert the picel data into a usable format
-
-		success = ilConvertImage(IL_RGBA,IL_UNSIGNED_BYTE);
-
-		if(!success)
+		if(success)
 		{
-			//if an image failed to load, exit out
+			//convert the picel data into a usable format
 
-			cerr << "Failed to load image via DevIL" << endl;
-			glutLeaveMainLoop();
-			return;
+			success = ilConvertImage(IL_RGBA,IL_UNSIGNED_BYTE);
+
+			if(!success)
+			{
+				//if an image failed to load, exit out
+
+				cerr << "Failed to load image via DevIL" << endl;
+				glutLeaveMainLoop();
+				return;
+			}
+
+			glBindTexture(GL_TEXTURE_2D, texID[i]);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+			glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+
+			//pull th necessary information from the image DevIL loaded and bind it to an OpenGL texture
+
+			glTexImage2D(GL_TEXTURE_2D,0,ilGetInteger(IL_IMAGE_BPP), 
+						 ilGetInteger(IL_IMAGE_WIDTH),
+						 ilGetInteger(IL_IMAGE_HEIGHT),
+						 0, ilGetInteger(IL_IMAGE_FORMAT),
+						 GL_UNSIGNED_BYTE, ilGetData());
+
+			//since we don't need the original image anymore, remove it from memory
+
+			ilDeleteImages(1, &file[i]);
 		}
-
-		glBindTexture(GL_TEXTURE_2D, texID[i]);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
-		glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
-
-		//pull th necessary information from the image DevIL loaded and bind it to an OpenGL texture
-
-		glTexImage2D(GL_TEXTURE_2D,0,ilGetInteger(IL_IMAGE_BPP), 
-					 ilGetInteger(IL_IMAGE_WIDTH),
-					 ilGetInteger(IL_IMAGE_HEIGHT),
-					 0, ilGetInteger(IL_IMAGE_FORMAT),
-					 GL_UNSIGNED_BYTE, ilGetData());
-
-		//since we don't need the original image anymore, remove it from memory
-
-		ilDeleteImages(1, &file[i]);
-	}
 
 	}
 
 	//init buttons here
-}
-
-void Menu::drawMenu()
-{
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D,texID[0]);
-	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
-
-	glBegin(GL_QUADS);
-		glTexCoord2f(0,0); glVertex2f(-w + x, h + y);
-		glTexCoord2f(0,1); glVertex2f(-w + x, -h + y);
-		glTexCoord2f(1,1); glVertex2f(w + x, -h + y);
-		glTexCoord2f(1,0); glVertex2f(w + x, h + y);
-	glEnd();
-
-	glDisable(GL_TEXTURE_2D);
-
-	//draw buttons
 }

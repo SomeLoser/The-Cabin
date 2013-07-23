@@ -8,7 +8,7 @@
 #include "Buttons.h"
 
 #include "Buttons.h"
-#include "Menu.h"
+#include "CharacterMenu.h"
 //#include "character.h"
 
 using namespace std;
@@ -36,7 +36,7 @@ Buttons forwardButton;
 const int FPS = 27;
 const int BOUND = 100;
 
-Menu menu;
+CharacterMenu menu;
 
 //GLuint texID[6]; //ID's for the textures
 ALuint bgmusic; //ID for the audio
@@ -90,7 +90,7 @@ int main(int argc, char** argv)
 	glutMainLoop();
 	
 	//this handles all of your clean up 
-	destroyGame();
+	//destroyGame();
 	return 0;
 }
 
@@ -172,7 +172,7 @@ void display()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	drawCharacerMenu();
+	menu.drawCharacterMenu();
 
 	glutSwapBuffers();
 }
@@ -180,7 +180,7 @@ void display()
 void initGame()
 {
 	//game initializations
-	menu = Menu();
+	menu = CharacterMenu();
 	menu.initMenu();
 }
 
@@ -196,24 +196,24 @@ void keyboard(unsigned char key, int x, int y)
 	glutPostRedisplay();
 }
 
-void destroyGame()
-{
-	for(int i = 0; i < 6; ++i)
-	{
-	//unload the textures form memory 
-	glDeleteTextures(1,&texID[i]);
-	}
-
-	for(int j = 0; j < 3; ++j)
-	{
-	//remove the buffer from memory
-	alDeleteBuffers(1,&bufferID[j]);
-	//remove the sound from memory 
-	alDeleteSources(1,&bgmusic);
-	//allows ALUT to perform a clean exit
-	}
-	alutExit();
-}
+//void destroyGame()
+//{
+//	for(int i = 0; i < 6; ++i)
+//	{
+//	//unload the textures form memory 
+//	glDeleteTextures(1,&texID[i]);
+//	}
+//
+//	for(int j = 0; j < 3; ++j)
+//	{
+//	//remove the buffer from memory
+//	alDeleteBuffers(1,&bufferID[j]);
+//	//remove the sound from memory 
+//	alDeleteSources(1,&bgmusic);
+//	//allows ALUT to perform a clean exit
+//	}
+//	alutExit();
+//}
 
 void update(int value)
 {
@@ -232,6 +232,8 @@ void mouseButton(int state, int button, int x, int y)
 	y = (y / (windowHeight / 2.0)) *100;
 
 	button = (1 << button);
+
+	cerr << x << ", " << y << endl;
 
 
 }
